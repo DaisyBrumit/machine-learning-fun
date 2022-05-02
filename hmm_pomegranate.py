@@ -3,24 +3,7 @@ import pomegranate as pg
 
 # Main function
 def main():
-    states = ['fair', 'loaded'] # Q where N = 2\n",
-    obs = ['3', '5', '4', '2', '1', '6', '5', '4', '6', '6'] # This is O where T = 10, V = 1,2,3,4,5,6 where v = 6\n",
-
-    init_prob = {'fair': 0.5, 'loaded': 0.5} # PI where N = 2\n",
-
-    # emission probabilities = B = bi(ot) = P(observation 't' resulting from state 'i')\n",
-    emission_prob = {
-        'fair': [1/6, 1/6, 1/6, 1/6, 1/6, 1/6],
-        'loaded': [1/10, 1/10, 1/10, 1/10, 1/10, 1/2]
-       }
-
-    # transition probabilities = A = a11, ..., aij, ..., aNN = P(moving from state 'i' to state 'j')\n",
-    trans_prob = {
-        'fair': {'fair': 0.95, 'loaded': 0.095}, # P('fair' state given either previous state)\n",
-        'loaded': {'fair': 0.045, 'loaded': 0.9}, # P('loaded' state given either previous state)\n",
-        'end': {'fair': 0.005, 'loaded': 0.05} # P(termination given either previous state)\n",
-        }
-
+    
     model = pg.HiddenMarkovModel(name='Model')
     fair_emission = pg.UniformDistribution(1, 6)
     fair_state = pg.State(fair_emission, name='fair')
